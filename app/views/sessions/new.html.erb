@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="row">
+
+   <%= form_with scope: :session, local: true do |f|%>
+      <div class="form-group">
+          <label>メールアドレス</label>
+          <%= f.text_field :email, class: "form-control", id: "session_email" %>
+      </div>
+      <div class="form-group">
+          <label>パスワード<label>
+          <%= f.password_field :password, class: "form-control" , id: "session_password" %>
+      </div>
+      <div class="form-group">
+          <label>パスワード(確認)<label>
+          <%= f.password_field :password_confirmation, class: "form-control" , id: "session_password" %>
+      </div>
+      <div class="text-center">
+          <%= f.submit "ログイン", class: "btn btn-primary"%>
+      </div>
+     <%end%>
+   </div> 
+</div>
+

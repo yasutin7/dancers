@@ -1,0 +1,8 @@
+<%= form_with model:@post, local: true do |f| %>
+  <div class="form-group">
+      <%= f.text_area :content, class: "form-control" %>
+  </div>
+  <div class="text-center">
+      <%= f.submit "Save", class: "btn btn-primary"%>
+  </div>
+ <%end%>

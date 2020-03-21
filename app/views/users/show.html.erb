@@ -1,0 +1,64 @@
+<div class="jumbotron">
+<div class="container">
+<h1 class="display-3"><%= @user.name %> </h1>
+<h2 > ▶︎ <%= @user.genre%></h2>
+<%= image_tag @user.image.thumb.url if @user.image?  %> 
+
+<div>
+
+</div>
+</br>
+<p class="lead"><%= @user.introduce%></p>
+
+<hr class="my-2">
+<p><%= @user.address %>在住 , <%= @user.age%>才 , <%= @user.sex%>　　<%= link_to '編集する', edit_user_path %></p>
+
+<br>
+<div class="container">
+<div class="row">
+    <div class="col-md-12">
+      <% if @current_user.id == params[:id].to_i %>
+        <table class = "table table-striped">
+            <thead class="thead-light">
+                <tr>
+                    <th >投稿一覧</th>
+                    <th >メニュー</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% @user.posts.each do |post|%>
+                 <tr>
+                     <td><%=link_to post.content , post_path(post)%></td>
+                     <td> <%=link_to "編集する", edit_post_path(post)%>
+                          <%=link_to "削除する", post_path(post), method: :delete, data:{confirm: '削除しますか？'}%>
+                     </td>
+                 </tr>
+                 <%end%>
+            </tbody>
+        </table>
+        <% elsif @current_user.id != params[:id].to_i %>
+        <table class = "table table-striped">
+            <thead class="thead-light">
+                <tr>
+                    <th>投稿一覧</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <% @user.posts.each do |post|%>
+                 <tr>
+                     <td><%=link_to post.content , post_path(post)%></td>
+                     <td></td>
+                 </tr>
+                 <%end%>
+            </tbody>
+        </table>
+      <% end %>
+        
+    </div>
+
+</div>
+</div>
+</div>
+
+

@@ -1,0 +1,37 @@
+<div class="container">
+            <div class="row">
+<%= form_with model:@user, local: true do |f| %>
+   <div class="form-group">
+      <label>ニックネーム</label>
+      <%= f.text_field :name, class: "form-control" %>
+   </div>
+   <div class="form-group">
+      <label>ジャンル</label>
+      <%= f.select :genre, [['Hiphop'], ['Jazz'],['Jazz Hip Hop / Street Jazz'],['House'],[ "Popin'"],["Lockin'"],['Soul'],['Freestyle']], {prompt: '選択してください'}, { id: "session_genre", class: "form_control" } %>       
+  </div>
+
+   <div class="form-group">
+      <label>画像</label>
+      <%= f.file_field :image %>
+   </div>
+  <div class="form-group">
+      <label>メールアドレス</label>
+      <%= f.text_field :email, class: "form-control", id: 'session_email'%>
+  </div>
+  <div class="form-group">
+      <label>パスワード<label>
+      <%= f.password_field :password, class: "form-control" , id: 'session_password'%>
+  </div>
+  <div class="form-group">
+      <label>パスワード(確認)<label>
+      <%= f.password_field :password_confirmation, class: "form-control", id: 'session_password'  %>
+  </div>
+  <div class="text-center">
+      <%= f.submit "ログイン", class: "btn btn-primary"%>
+  </div>
+ <%end%>
+
+</div>
+</div>
+
+
