@@ -34,6 +34,7 @@ before_action :ensure_correct_user, only: [:edit , :update , :destroy]
   
   def destroy
     @post.destroy
+    redirect_to root_path, notice: "削除しました"
   end
 
 
@@ -43,7 +44,7 @@ before_action :ensure_correct_user, only: [:edit , :update , :destroy]
   private
 
   def post_params
-    params.require(:post).permit(:content,:created_at)
+    params.require(:post).permit(:content,:condition,:created_at)
   end
 
   def ensure_correct_user

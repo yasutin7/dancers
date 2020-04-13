@@ -1,5 +1,6 @@
 <%= form_with model:@post, local: true do |f| %>
   <div class="form-group">
+      <%= f.text_area :condition, class: "form-control" %>をするかわりに、
       <%= f.text_area :content, class: "form-control" %>
   </div>
   <div class="text-center">

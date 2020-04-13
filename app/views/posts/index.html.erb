@@ -11,15 +11,14 @@
                 <tr> 
                     <th>投稿一覧</th>
                     <th></th>
-                   
-                </tr>
+                    </tr>
             </thead>
             <tbody>
                 <% @posts.each do |post|%>
-                 <tr>                    
-                     <th><%=image_tag post.user.image.thumb50.url if post.user.image? %>
-                      　　　<%=link_to post.user.name , user_path(post.user)%></th>
-                    <th><%=link_to post.content,post_path(post)%></th>
+              
+                <tr>                
+                     <th width = "100"><%=image_tag post.user.image.thumb100.url if post.user.image? %></th>
+                      <th width = "900"> <%=link_to post.user.name , user_path(post.user)%><br><%= link_to post.condition, post_path(post) %>をするかわりに、<%=link_to post.content,post_path(post)%></th>
 
                  </tr>
                  <%end%>

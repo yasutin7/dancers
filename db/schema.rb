@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(version: 2020_03_18_100811) do
 
   create_table "posts", force: :cascade do |t|
     t.text "content"
+    t.text "condition"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id", null: false
@@ -33,9 +34,9 @@ ActiveRecord::Schema.define(version: 2020_03_18_100811) do
     t.string "image"
     t.integer "age"
     t.string "sex"
-    t.string "address"
     t.string "genre"
     t.text "introduce"
+    t.text "address"
   end
 
 end

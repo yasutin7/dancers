@@ -24,6 +24,7 @@
     <ul class="navbar-nav">
         
       <% if @current_user %>
+      <% a = @current_user.id.to_i %>
       <li class="nav-item ">
         <a class="nav-link" href="/">投稿一覧 </a>
       </li>
@@ -32,7 +33,7 @@
       </li>
       <li class="nav-item">
         <a class="nav-link" href="/users">ダンサー一覧</a>
-      </li>
+     
      
       <li class="nav-item">
            <a class="nav-link" href="/logout" data-method="delete">ログアウト</a>
@@ -57,10 +58,10 @@
 <div class="container">
       <% if flash[:notice]%>
       <p class="text-success"><%=flash[:notice]%></p>
-      
       <%end%>
+      
       <% if flash[:alert]%>
-      <p class="text-danger"><%=flash[:alert]%></p>
+        <p class="text-danger"><%=flash[:alert]%></p>
       <%end%>
   </div>
     <%= yield %>

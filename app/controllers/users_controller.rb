@@ -57,7 +57,7 @@ skip_before_action :login_required, only: [:new,:create]
   def ensure_correct_user
     @user = User.find(params[:id])  #初期値を入れるため
     if @current_user.id != params[:id].to_i
-      flash[:notice] = "権限がありません"
+      flash[:alert] = "権限がありません"
       redirect_to user_path
     end
   end

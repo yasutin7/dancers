@@ -1,5 +1,5 @@
 <div class="container">
-<h2>Dancers</h2>
+
 <br>
 <div class="row">
     <div class="col-md-12">
@@ -62,12 +62,8 @@
         沖縄県: "沖縄県"
         },{prompt: '選択してください'}%>
         </div>
-        
-        # <%= f.label :age, "年齢" %>
-        # <%= f.number_field :age_gteq %>以上〜
-        # <%= f.number_field :age_lt %>未満
        
-       <%= f.submit "検索" %>  
+       　<%= f.submit "検索" ,class: 'btn btn-default'%>  <%= link_to '戻る', users_path, class: 'btn btn-default'%>
      <% end %>
 
   
@@ -75,8 +71,9 @@
             <thead class="thead-light">
                
                 <tr>
-                    <th>ニックネーム</th>
+                    <th>Dancers</th>
                     <th></th>
+                    <th><th>
                     
                 </tr>
             </thead>
@@ -84,8 +81,16 @@
                
                  <% @users.each do |user|%>
                    <tr>
-                    <th><%=image_tag user.image.thumb50.url if user.image?%>　　　<%=link_to user.name, user_path(user) %></th>
-                    <th><%=link_to user.genre, user_path(user) %></th>
+                    <th width = "100">
+                     <%=image_tag user.image.thumb100.url if user.image?%>
+                    </th>
+                    <th width = "600">
+                     <%=link_to user.name, user_path(user) %><br>
+                     <%=user.genre %>
+                    </th>
+                    <th width = "600">
+                     <%= user.introduce %>
+                    </th>
                    </tr>
                   <% end %>
 

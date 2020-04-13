@@ -11,8 +11,12 @@
 <p class="lead"><%= @user.introduce%></p>
 
 <hr class="my-2">
-<p><%= @user.address %>在住 , <%= @user.age%>才 , <%= @user.sex%>　　<%= link_to '編集する', edit_user_path %></p>
-
+<% if @current_user.id == params[:id].to_i %>
+<p><%= @user.address %>在住 , <%= @user.age%>才 , <%= @user.sex%>
+　　<%= link_to '編集する', edit_user_path %></p>
+<%else%>
+<p><%= @user.address %>在住 , <%= @user.age%>才 , <%= @user.sex%></p>
+<%end%>
 <br>
 <div class="container">
 <div class="row">
@@ -28,7 +32,8 @@
             <tbody>
                 <% @user.posts.each do |post|%>
                  <tr>
-                     <td><%=link_to post.content , post_path(post)%></td>
+                     <td><%=link_to post.condition , post_path(post)%>するかわりに、
+                     <%=link_to post.content , post_path(post)%></td>
                      <td> <%=link_to "編集する", edit_post_path(post)%>
                           <%=link_to "削除する", post_path(post), method: :delete, data:{confirm: '削除しますか？'}%>
                      </td>
@@ -47,7 +52,8 @@
             <tbody>
                 <% @user.posts.each do |post|%>
                  <tr>
-                     <td><%=link_to post.content , post_path(post)%></td>
+                    
+                     <td><%=link_to post.condition , post_path(post)%>のかわりに<%=link_to post.content , post_path(post)%></td>
                      <td></td>
                  </tr>
                  <%end%>

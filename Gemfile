@@ -65,4 +65,5 @@ gem 'bcrypt', '~>3.1.7'
 gem 'carrierwave', '>= 2.0.0.rc', '< 3.0'
 gem 'mini_magick'
 gem 'ransack'
+gem 'devise'
 

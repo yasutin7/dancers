@@ -1,4 +1,22 @@
-<div class="container">
- <h1><%=@post.content%></h1>
+<div class="jumbotron" >
+  <div class="container",text-align:center;>
+ 
+  <div class="post">
+       
+        <p class="display-5"><%= link_to @post.user.name, user_path(@post.user)%></p>
 
+       <h1 class="display-7"><%= @post.condition %></h1> 
+       <p>をするかわりに</p>
+       <h1 class="display-7"><%= @post.content %></h1>
+      
+       
+        <p class="lead"><%= @post.user.email %></p>
+         <p class="lead"><%= @post.created_at %></p>
+      <% if @post.user_id == @current_user.id %>
+      <%= link_to("編集", "/posts/#{@post.id}/edit") %>
+      <%= link_to("削除", "/posts/#{@post.id}/destroy", {method: "post"}) %>
+      <%end%>
+      
+    </div>
+  </div>
 </div>
