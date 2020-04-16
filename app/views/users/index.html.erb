@@ -73,25 +73,18 @@
                 <tr>
                     <th>Dancers</th>
                     <th></th>
-                    <th><th>
-                    
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
                
-                 <% @users.each do |user|%>
-                   <tr>
-                    <th width = "100">
-                     <%=image_tag user.image.thumb100.url if user.image?%>
-                    </th>
-                    <th width = "600">
-                     <%=link_to user.name, user_path(user) %><br>
-                     <%=user.genre %>
-                    </th>
-                    <th width = "600">
-                     <%= user.introduce %>
-                    </th>
-                   </tr>
+                 <% @users.each do |user|%>        
+                <tr>                
+                     <th width = "100"><%=image_tag user.image.thumb100.url if user.image? %></th>
+                     <th width = "100"> <%= link_to user.name, user_path(user) %>
+                      <th width = "900"> ジャンル：<%=user.genre %><br><%= user.introduce %></th>
+
+                 </tr>
                   <% end %>
 
                 

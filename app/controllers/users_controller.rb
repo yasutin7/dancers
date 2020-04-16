@@ -44,6 +44,19 @@ skip_before_action :login_required, only: [:new,:create]
     @user.destroy
   end
 
+  def following
+    @title = "フォロー中のユーザー"
+    @user  = User.find(params[:id])
+    @users = @user.following
+    render 'show_follow'
+  end
+
+  def followers
+    @title = "フォロワー"
+    @user  = User.find(params[:id])
+    @users = @user.followers
+    render 'show_follow'
+  end
 
 
 

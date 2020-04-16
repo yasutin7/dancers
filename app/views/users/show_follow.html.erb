@@ -1,0 +1,37 @@
+<div class="container" >
+
+<div class="row">
+
+    <section class="user_info">
+      <h1><%= link_to @user.name, @user %></h1>
+    </section>
+    <section class="stats">
+    <%= render 'shared/stats' %>
+     </section>
+      <table class = "table table-hover">
+            <thead class="thead-light">
+               
+                <tr>
+                    <th ><%=@title %></th>
+                    <th></th>
+                    <th></th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+            <% if @users.any? %>
+                 <% @users.each do |user|%>
+              
+                    <tr>                
+                     <th width = "100"><%=image_tag user.image.thumb100.url if user.image? %></th>
+                     <th width = "100"> <%= link_to user.name, user_path(user) %>
+                      <th width = "900"> ジャンル：<%=user.genre %><br><%= user.introduce %></th>
+                    </tr>
+                  <% end %>
+
+              <%end%>  
+            </tbody>
+        </table>
+
+</div>
+</div>
