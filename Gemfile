@@ -67,5 +67,5 @@ gem 'mini_magick'
 gem 'ransack'
 gem 'faker'
 gem "jquery-rails"
-
+gem 'pry-rails'
 

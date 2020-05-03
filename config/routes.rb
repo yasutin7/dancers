@@ -11,7 +11,8 @@ Rails.application.routes.draw do
   get '/top' => 'home#top'
   get '/about' => 'home#about'
   resources :relationships, only: [:create, :destroy]
-  
+  resources :rooms, only: [:show, :create, :index ]
+  mount ActionCable.server => '/cable'
   
   resources :users do
     member do 

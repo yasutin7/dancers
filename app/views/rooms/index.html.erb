@@ -1,0 +1,9 @@
+<div>
+  <ul>
+    <% @rooms.each do |room| %>
+      <li><%= link_to "ROOM#{room.id}", room_path(room) %></li>
+    <% end %>
+  </ul>
+</div>
+
+<%= link_to "DM", rooms_path, method: :post, class: "far fa-envelope" %>
