@@ -1,6 +1,6 @@
 <div class="jumbotron" >
   <div class="container",text-align:center;>
- 
+   
   <div class="post">
        
         <p class="display-4"><%= link_to @post.user.name, user_path(@post.user)%></p>
@@ -12,6 +12,9 @@
        
         <p class="lead"><%= @post.user.email %></p>
          <p class="lead"><%= @post.created_at %></p>
+         <% if @post.user_id != current_user.id %>
+         <%= link_to "DM", rooms_path(current_user.id), method: :post, class: "far fa-envelope" %>
+         <%end%>
       <% if @post.user_id == @current_user.id %>
       <%= link_to "編集する", edit_post_path %>
       <%=link_to "削除する", post_path(@post), method: :delete, data:{confirm: '削除しますか？'}%>

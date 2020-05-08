@@ -3,7 +3,9 @@
   <h1><%= "Chat Room #{@room.id}" %></h1>
   <h4 class="border"><%= "Your Mail Address: #{current_user.email}" %></h4>
   <div id="messages", data-room_id="<%= @room.id %>">
-    <%= render @messages %>
+    <ul class="list-group">
+       <%= render @messages %>
+     </ul>
   </div>
   <form  class="form-inline">
 <div class="form-group">
