@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   resources :relationships, only: [:create, :destroy]
   resources :rooms, only: [:show, :create, :index ]
   mount ActionCable.server => '/cable'
-  
+
   resources :users do
     member do 
       get :following, :followers

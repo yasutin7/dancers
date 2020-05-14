@@ -5,10 +5,13 @@
     <section class="user_info">
       <h1><%= link_to @user.name, @user %></h1>
     </section>
-    <section class="stats">
-    <%= render 'shared/stats' %>
+
+
+    <section class="stats1">
+       <%= render 'shared/stats' %>
      </section>
       <table class = "table table-hover">
+      <% if @users.any? %>
             <thead class="thead-light">
                
                 <tr>
@@ -19,7 +22,7 @@
                 </tr>
             </thead>
             <tbody>
-            <% if @users.any? %>
+
                  <% @users.each do |user|%>
               
                     <tr>                
@@ -29,8 +32,17 @@
                     </tr>
                   <% end %>
 
-              <%end%>  
-            </tbody>
+            <%else%>
+            <thead class="thead-light">
+               
+            <tr>
+                <th ><%=@title %>はいません</th>
+                
+            </tr>
+        </thead>
+            <% end %>
+
+          </tbody>
         </table>
 
 </div>

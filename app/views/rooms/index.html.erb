@@ -1,9 +1,38 @@
-<div>
-  <ul>
-    <% @rooms.each do |room| %>
-      <li><%= link_to "ROOM#{room.id}", room_path(room) %></li>
-    <% end %>
-  </ul>
+<div class="container">
+
+    <div class="row">
+    <div class="col-md-12">
+        <table class = "table table-hover">
+          <thead class="thead-light">
+              <tr> 
+                <th>トーク相手一覧</th>
+              </tr>
+          </thead>
+          <tbody>
+            
+          <%@entries.each do |e|%> 
+              <%if current_user.id == e.user_id  %>
+                <% entries = @entries.where(room_id: e.room.id)%>
+                 <%entries.each do |en|%>
+                  <%if en.user_id == current_user.id%>
+                    <%else%>
+                        <tr>
+                            <th>
+                              <h1><%= link_to en.user.name, room_path(e.room_id)%></h1>
+                              <% en.room.messages.each_with_index  do |m, index|%>
+                              <%if index == en.room.messages.size-1 %>
+                              <h5>メッセージ： <%= m.content%>  by <%= m.user.name %>さん</p> </h5>
+                          </th>
+                        </tr>
+                        <%end%>
+                      <%end%>
+                    <%end%>
+                  <%end%>
+                <%end%>
+             <%end%>
+     </table>
+    </div>
+  </div> 
 </div>
 
-<%= link_to "DM", rooms_path, method: :post, class: "far fa-envelope" %>
+  

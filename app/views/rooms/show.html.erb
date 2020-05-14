@@ -1,8 +1,11 @@
 <div class="container">
-  <%= link_to "<<back index", rooms_path %>
-  <h1><%= "Chat Room #{@room.id}" %></h1>
-  <h4 class="border"><%= "Your Mail Address: #{current_user.email}" %></h4>
-  <div id="messages", data-room_id="<%= @room.id %>">
+  <% @entries.each do |e| %>
+    <% if e.user.id == current_user.id %>
+    <%next%>
+    <%end%>
+    <h1><strong><a href="/users/<%= e.user.id %>"><%= e.user.name%>さん</a></strong></h1>
+  <% end %>
+  <div id="messages", data-room_id= "<%= @room.id %>">
     <ul class="list-group">
        <%= render @messages %>
      </ul>
@@ -12,6 +15,7 @@
 <input type="text"  class="form-control"  id="chat-input">
 </div>
 <button id="button" class="btn btn-primary">送信</button>
+
 
 </form>
 </div>
