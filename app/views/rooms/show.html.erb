@@ -1,6 +1,6 @@
 <div class="container">
   <% @entries.each do |e| %>
-    <% if e.user.id == current_user.id %>
+    <% if e.user == current_user  %>
     <%next%>
     <%end%>
     <h1><strong><a href="/users/<%= e.user.id %>"><%= e.user.name%>さん</a></strong></h1>

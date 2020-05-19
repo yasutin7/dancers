@@ -4,10 +4,12 @@ before_action :ensure_correct_user, only: [:edit , :update , :destroy]
 
   def index
     @posts = Post.all.order(created_at: :desc)
+
   end
 
   def show
     @post = Post.find(params[:id])
+    @like = Like.new
   end
 
   def new

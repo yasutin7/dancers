@@ -3,6 +3,14 @@
     <div class="row">
     <div class="col-md-12">
         <table class = "table table-hover">
+        <% entries = @entries.where(user_id: current_user.id)%>
+        <%if entries.empty?%>
+          <thead class="thead-light">
+              <tr> 
+                <th>トーク相手はまだいません</th>
+              </tr>
+          </thead>
+        <%else%>
           <thead class="thead-light">
               <tr> 
                 <th>トーク相手一覧</th>
@@ -21,9 +29,14 @@
                               <h1><%= link_to en.user.name, room_path(e.room_id)%></h1>
                               <% en.room.messages.each_with_index  do |m, index|%>
                               <%if index == en.room.messages.size-1 %>
+                              <%if m.user.id == current_user.id%>
+                              <h5>メッセージ： <%= m.content%>  by あなた</p> </h5>
+                              <%else%>
                               <h5>メッセージ： <%= m.content%>  by <%= m.user.name %>さん</p> </h5>
+                              <%end%>
                           </th>
                         </tr>
+                        <%end%>
                         <%end%>
                       <%end%>
                     <%end%>

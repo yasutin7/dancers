@@ -22,10 +22,13 @@
                      <th width = "100"><%=image_tag post.user.image.thumb100.url if post.user.image? %></th>
                      <th width = "100"> <%= link_to post.user.name, user_path(post.user) %>
                       <th width = "900">  <a href="/posts/<%= post.id %>"><span style="font-size:2em;"><%= post.condition%></span>をするかわりに<br><span style="font-size:2em;"><%=post.content%></span></a></th>
-
+                     
                  </tr>
+                 
                  <%end%>
+                
             </tbody>
+            
         </table>
 
 

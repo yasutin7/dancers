@@ -72,7 +72,7 @@
                 <% @user.posts.each do |post|%>
                  <tr>
                      <td><a href="/posts/<%=post.id%>"><%=post.condition%>をするかわりに<%=post.content%></a></td>
-                     <td> <%=link_to "編集する", edit_post_path(post)%>
+                     <td> 
                           <%=link_to "削除する", post_path(post), method: :delete, data:{confirm: '削除しますか？'}%>
                      </td>
                  </tr>
@@ -84,7 +84,6 @@
             <thead class="thead-light">
                 <tr>
                     <th>投稿一覧</th>
-                    <th></th>
                 </tr>
             </thead>
             <tbody>

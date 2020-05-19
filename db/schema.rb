@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_09_110921) do
+ActiveRecord::Schema.define(version: 2020_05_14_150446) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,16 @@ ActiveRecord::Schema.define(version: 2020_05_09_110921) do
     t.datetime "updated_at", null: false
     t.index ["room_id"], name: "index_entries_on_room_id"
     t.index ["user_id"], name: "index_entries_on_user_id"
+  end
+
+  create_table "likes", force: :cascade do |t|
+    t.bigint "post_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "tweet_id"
+    t.index ["post_id"], name: "index_likes_on_post_id"
+    t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
   create_table "messages", force: :cascade do |t|
@@ -41,6 +51,7 @@ ActiveRecord::Schema.define(version: 2020_05_09_110921) do
     t.datetime "updated_at", null: false
     t.bigint "user_id", null: false
     t.string "image"
+    t.integer "likes_count"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
@@ -75,6 +86,8 @@ ActiveRecord::Schema.define(version: 2020_05_09_110921) do
 
   add_foreign_key "entries", "rooms"
   add_foreign_key "entries", "users"
+  add_foreign_key "likes", "posts"
+  add_foreign_key "likes", "users"
   add_foreign_key "messages", "rooms"
   add_foreign_key "messages", "users"
 end

@@ -5,16 +5,23 @@
        
         <p class="display-4"><%= link_to @post.user.name, user_path(@post.user)%></p>
 
-       <h1 class="display-7"><%= @post.condition %></h1> 
+       <strong><h1 class="display-7 "><%= @post.condition %></h1>
        <p>をするかわりに</p>
-       <h1 class="display-7"><%= @post.content %></h1>
+       <h1 class="display-7"><%= @post.content %></h1><strong>
       
        
         <p class="lead"><%= @post.user.email %></p>
          <p class="lead"><%= @post.created_at %></p>
-         <% if @post.user_id != current_user.id %>
-         
-         <%end%>
+        <%if @post.likes.count == 0%>
+        <%else%>
+         <strong><%= link_to "いいね: #{@post.likes.count}", post_likes_path(@post, id:@post.id ) %></strong>
+        <%end%>
+         <% if current_user.already_liked?(@post) %>
+           <%= button_to 'いいね済',  post_like_path(@post), method: :delete, class: 'unlike-btn' %>
+         <% else %>
+           <%= button_to 'いいね', post_likes_path(@post), class: 'like-btn' %>
+         <% end %>
+      
       <% if @post.user_id == @current_user.id %>
       <%= link_to "編集する", edit_post_path %>
       <%=link_to "削除する", post_path(@post), method: :delete, data:{confirm: '削除しますか？'}%>
