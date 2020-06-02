@@ -12,8 +12,10 @@
        
         <p class="lead"><%= @post.user.email %></p>
          <p class="lead"><%= @post.created_at %></p>
-        
+        <%if @post.likes.count == 0 %>
+        <%else%>
          <strong><%= link_to "いいね: #{@post.likes.count}", post_likes_path(@post, id:@post.id ) %></strong>
+        <%end%>
          
          <% if current_user.already_liked?(@post) %>
            <%= button_to 'いいね済',  post_like_path(@post), method: :delete, class: 'unlike-btn' %>
