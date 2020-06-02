@@ -1,5 +1,5 @@
 class AddUserIdToPosts < ActiveRecord::Migration[5.2]
   def change
-    add_reference :posts, :user, null: false, index: true
+    add_column :posts,:user_id,:integer
   end
 end
