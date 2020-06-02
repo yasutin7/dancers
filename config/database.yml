@@ -78,8 +78,9 @@ test:
 #   production:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
-production:
-  <<: *default
-  database: dancers_production
-  username: dancers
-  password: <%= ENV['DANCERS_DATABASE_PASSWORD'] %>
+  production:
+    #半角スペース２個分の空白を開ける
+      <<: *default
+      adapter: postgresql
+      encoding: unicode
+      pool: 5
