@@ -12,16 +12,9 @@
        
         <p class="lead"><%= @post.user.email %></p>
          <p class="lead"><%= @post.created_at %></p>
-        <%if @post.likes.count == 0 %>
-        <%else%>
-         <strong><%= link_to "いいね: #{@post.likes.count}", post_likes_path(@post, id:@post.id ) %></strong>
-        <%end%>
-         
-         <% if current_user.already_liked?(@post) %>
-           <%= button_to 'いいね済',  post_like_path(@post), method: :delete, class: 'unlike-btn' %>
-         <% else %>
-           <%= button_to 'いいね', post_likes_path(@post), class: 'like-btn' %>
-         <% end %>
+       <div id="likes_buttons_<%= @post.id %>">
+             <%= render partial: 'likes/like', locals: { post: @post} %>
+       </div>
       
       <% if @post.user_id == @current_user.id %>
       <%= link_to "編集する", edit_post_path %>

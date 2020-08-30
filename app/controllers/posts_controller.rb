@@ -4,7 +4,6 @@ before_action :ensure_correct_user, only: [:edit , :update , :destroy]
 
   def index
     @posts = Post.all.order(created_at: :desc)
-
   end
 
   def show
@@ -21,7 +20,6 @@ before_action :ensure_correct_user, only: [:edit , :update , :destroy]
    if @post.save
      redirect_to root_path, notice: "投稿しました"
    else
-      flash[:alert]= '回答に不備があります'
      render :new
    end
   end

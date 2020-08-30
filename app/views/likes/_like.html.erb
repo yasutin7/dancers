@@ -1,0 +1,15 @@
+<%if post.likes.count == 0 %>
+<%else%>
+    <strong><%= link_to "いいね: #{post.likes.count}", post_likes_path(post, id:post.id) %></strong>
+<%end%>
+
+<% if current_user.already_liked?(post) %>
+    <%= link_to post_like_path(post_id: post.id, id: post.likes[0].id), method: :delete, remote: true  do %>
+       <i class="far fa-heart unlike-btn"></i>
+    <%end%>
+   
+<% else %>
+    <%= link_to post_likes_path(post), method: :post, remote: true  do %>
+       <i class="far fa-heart like-btn"></i>
+    <%end%>
+<% end %>
