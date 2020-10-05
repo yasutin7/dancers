@@ -1,9 +1,10 @@
 <%= form_with model:@post, local: true do |f| %>
+  <%= render 'shared/error_messages', model: f.object%>
   <div class="form-group">
       <%= f.text_area :condition, class: "form-control" %>をするかわりに、
       <%= f.text_area :content, class: "form-control" %>
   </div>
   <div class="text-center">
-      <%= f.submit "Save", class: "btn btn-primary"%>
+      <%= f.submit class: "btn btn-primary"%>
   </div>
  <%end%>

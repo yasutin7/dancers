@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
   skip_before_action :login_required
-  before_action :forbid_login_user, {only: [:new, :create, :login]}
+  before_action :forbid_login_user, { only: [:new, :create, :login] }
   def new
     @user = User.new
   end
@@ -17,11 +17,12 @@ class SessionsController < ApplicationController
 
   def destroy
     reset_session
-    redirect_to top_path , notice: 'ログアウトしました'
+    redirect_to top_path, notice: 'ログアウトしました'
   end
 
-    private
-    def session_params
-      params.required(:session).permit(:email, :password)
-    end
+  private
+
+  def session_params
+    params.required(:session).permit(:email, :password)
+  end
 end

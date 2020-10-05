@@ -1,17 +1,16 @@
 <div class="container">
-
-<br>
-<div class="row">
-    <div class="col-md-12">
-    <%= search_form_for @q  do |f| %>
+    <div class="users-index-title">
+      <i class="fas fa-check fa-1x">ダンサー一覧から探す</i>
+    </div>
+    <div class="seach-form">
+     <%= search_form_for @q  do |f| %>
+       <div class="genre-form">
         <%= f.label :genre, "ジャンル" %>
-        <%= f.select :genre_cont, [['Hiphop'], ['Jazz'],['Jazz Hip Hop / Street Jazz'],['House'],[ "Popin'"],["Lockin'"],['Soul'],['Freestyle']], {prompt: '選択してください'}%>   
-       
-                  
-        <br>
-       
+        <%= f.select :genre_cont, [['Hiphop'], ['Jazz'],['Jazz Hip Hop / Street Jazz'],['House'],[ "Popin'"],["Lockin'"],['Soul'],['Freestyle']],{prompt: '選択してください'}%>   
+      </div>
+      
+      <div class="address-form">
         <%= f.label :address, "居住地" %>
-    
         <%= f.select :address_cont ,
         { 北海道: "北海道" ,
         青森県: "青森県" ,
@@ -62,34 +61,35 @@
         沖縄県: "沖縄県"
         },{prompt: '選択してください'}%>
         </div>
-       
-       <%= f.submit "検索" ,class: 'btn btn-default'%>  <%= link_to '戻る', users_path, class: 'btn btn-default'%>
-     <% end %>
 
-  
-        <table class = "table table-hover">
-            <thead class="thead-light">
-               
-                <tr>
-                    <th>Dancers</th>
-                    <th></th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-               
-                 <% @users.each do |user|%>        
-                <tr>                
-                     <th width = "100"><%=image_tag user.image.thumb100.url if user.image? %></th>
-                     <th width = "100"> <%= link_to user.name, user_path(user) %>
-                      <th width = "900"> ジャンル：<%=user.genre %><br><%= user.introduce %></th>
+        <%= f.submit "検索", class: 'users-search-btn' %> 
+        <%= link_to 'リセット', users_path, class: 'users-search-reset'%>
+      <% end %>
+     </div>
 
-                 </tr>
-                  <% end %>
-
-                
-            </tbody>
-        </table>
-    </div>
+        <div class="clearfix">
+        <% @users.each do |user|%>
+            <div class="card float-left ">
+            <div class="user-genre">
+              <h1><%= user.genre%></h1>
+            </div>
+            <%if user.image? %>
+                <%=image_tag user.image.thumb.url, class: "card-img-top" %>
+            <%else%>
+                <%= image_tag 'default.jpg', class: "card-img-top" %>
+            <%end%>
+                <div class="card-body user-card-body">
+                    <h4 class="card-title"><%= link_to user.name, user_path(user) %></h4>
+                    <p class="card-text">
+                    <%= user.introduce %>
+                    </p>
+                    <%= link_to user_path(user), class: "btn btn-primary" do%>
+                    詳しく見る
+                    <% end %>
+                </div>
+            </div>
+         <%end%>
+        </div>
 </div>
-</div>
+
+

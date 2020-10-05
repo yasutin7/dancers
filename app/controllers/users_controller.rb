@@ -1,36 +1,34 @@
 class UsersController < ApplicationController
-  before_action :ensure_correct_user, only: [:edit , :update , :destroy]
-  before_action :forbid_login_user, {only: [:new,:create]}
-  skip_before_action :login_required, only: [:new,:create]
-  
-    def index
-      @q = User.ransack(params[:q])
-      @users = @q.result(distinct: true).recent
-    end
-  
+  before_action :ensure_correct_user, only: [:edit, :update, :destroy]
+  before_action :forbid_login_user, { only: [:new, :create] }
+  skip_before_action :login_required, only: [:new, :create]
 
-    def show
-      @user=User.find(params[:id])
-      @currentUserEntry=Entry.where(user_id: current_user.id)
-      @userEntry=Entry.where(user_id: @user.id)
-      if @user.id == current_user.id
-      else
-        @currentUserEntry.each do |cu|
-          @userEntry.each do |u|
-            if cu.room_id == u.room_id then
-              @isRoom = true
-              @roomId = cu.room_id
-            end
+  def index
+    @q = User.ransack(params[:q])
+    @users = @q.result(distinct: true).recent
+  end
+
+  def show
+    @user = User.find(params[:id])
+    @currentUserEntry = Entry.where(user_id: current_user.id)
+    @userEntry = Entry.where(user_id: @user.id)
+    if @user.id == current_user.id
+    else
+      @currentUserEntry.each do |cu|
+        @userEntry.each do |u|
+          if cu.room_id == u.room_id
+            @isRoom = true
+            @roomId = cu.room_id
           end
         end
-        if @isRoom
-        else
-          @room = Room.new
-          @entry = Entry.new
-        end
+      end
+      if @isRoom
+      else
+        @room = Room.new
+        @entry = Entry.new
       end
     end
-
+  end
 
   def new
     @user = User.new
@@ -45,7 +43,6 @@ class UsersController < ApplicationController
       flash[:alert] = '入力に不備があります'
       render :new
     end
-
   end
 
   def edit
@@ -53,13 +50,13 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(users_params)
-     redirect_to user_path, notice: "更新しました"
-    else 
+      redirect_to user_path, notice: "更新しました"
+    else
       flash[:alert] = '入力に不備があります'
       render :new
     end
   end
-  
+
   def destroy
     @user.destroy
   end
@@ -78,21 +75,17 @@ class UsersController < ApplicationController
     render 'show_follow'
   end
 
-
-
-
   private
-  
+
   def users_params
-    params.require(:user).permit(:name,:image,:email,:password,:password_confirmation,:genre,:sex,:age,:address, :introduce)
+    params.require(:user).permit(:name, :image, :email, :password, :password_confirmation, :genre, :sex, :age, :address, :introduce)
   end
 
   def ensure_correct_user
-    @user = User.find(params[:id])  #初期値を入れるため
+    @user = User.find(params[:id]) # 初期値を入れるため
     if @current_user.id != params[:id].to_i
       flash[:alert] = "権限がありません"
       redirect_to user_path
     end
   end
-
 end

@@ -12,50 +12,45 @@
   </head>
 
   <body>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <%if current_user%>
-  <a class="navbar-brand" href="">Dancewith</a>
+  <a class="navbar-brand" href="">Dancers</a>
   <%else%>
-  <a class="navbar-brand" href="/top">Dancewith</a>
+  <a class="navbar-brand" href="/top">Dancers</a>
   <% end %>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
-  <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+  <div class="collapse navbar-collapse  justify-content-end" id="navbarSupportedContent">
     <ul class="navbar-nav">
         
       <% if @current_user %>
       <% a = @current_user.id.to_i %>
       <li class="nav-item ">
-        <a class="nav-link" href="/">投稿一覧 </a>
+        <a class="nav-link" href="/"><i class="fas fa-list"> 投稿一覧</i> </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/posts/new">新規投稿</a>
+        <a class="nav-link" href="/users"><i class="far fa-address-book"> ダンサー一覧</i></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/users">ダンサー一覧</a>
+        <a class="nav-link" href="/rooms"><i class="fas fa-comment-dots"> メッセージ</i></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/rooms">トーク一覧</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/users/<%= current_user.id %>">マイページ</a>
+        <a class="nav-link" href="/users/<%= current_user.id %>"><i class="fas fa-user-circle"> マイページ</i></a>
          
       </li>
      
       <li class="nav-item">
-           <a class="nav-link" href="/logout" data-method="delete">ログアウト</a>
+           <a class="nav-link" href="/logout" data-method="delete"><i class="fas fa-sign-out-alt"> Logout</i></a>
       </li>
       <%else%>
       <li class="nav-item">
-        <a class="nav-link" href="/about">Dancewithとは</a>
+        <a class="nav-link" href="/signup"><i class="fas fa-user-plus">  SignUP</i></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/signup">新規登録</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/login">ログイン</a>
+         <a class="nav-link" href="/login"><i class="fas fa-sign-in-alt"> Login</i></a>
       </li>
      
       <%end%>
@@ -64,21 +59,60 @@
     
   </div>
 </nav>
-<div class="container">
+
+    <div class="flash-container">
       <% if flash[:notice]%>
-      <p class="text-success"><%=flash[:notice]%></p>
+        <div class="alert alert-success shadow" role="alert">
+           <p class="text-success"><%=flash[:notice]%></p>
+        </div>
       <%end%>
       
+      
       <% if flash[:alert]%>
-        <p class="text-danger"><%=flash[:alert]%></p>
+        <div class="alert alert-danger shadow" role="alert">
+          <p class="text-danger"><%=flash[:alert]%></p>
+        </div>
       <%end%>
-  </div>
-
+    </div>
     <%= yield %>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
 
   </body>
+  <section id="footer">
+		<div class="container">
+			<div class="row text-center text-xs-center text-sm-left text-md-left">
+				<div class="col-xs-12 col-sm-4 col-md-4">
+         <%if current_user%>
+					<h5>リンク一覧</h5>
+					<ul class="list-unstyled quick-links">
+						<li><a href="/posts"><i class="fa fa-angle-double-right"></i>投稿一覧</a></li>
+						<li><a href="/users"><i class="fa fa-angle-double-right"></i>ダンサー一覧</a></li>
+						<li><a href="/rooms"><i class="fa fa-angle-double-right"></i>トーク一覧</a></li>
+						<li><a href="/users/<%=current_user.id%>"><i class="fa fa-angle-double-right"></i>マイページ</a></li>
+						<li></li>
+					</ul>
+         <%end%>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-5">
+					<ul class="list-unstyled list-inline social text-center">
+						<li class="list-inline-item"><a href="https://www.facebook.com/yasunari.fujiwara.1/"><i class="fab fa-facebook"></i></a></li>
+						<li class="list-inline-item"><a href="https://github.com/yasutin7"><i class="fab fa-github"></i></a></li>
+						<li class="list-inline-item"><a href="mailto:dancers@example.com"><i class="fa fa-envelope"></i></a></li>
+					</ul>
+				</div>
+				<hr>
+			</div>	
+			<div class="row">
+				<div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-2 text-center text-white">
+					<p class="h6">© All right Reversed.</p>
+				</div>
+				<hr>
+			</div>	
+		</div>
+	</section>
 </html>
 

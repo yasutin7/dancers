@@ -1,7 +1,13 @@
-<li class="list-group-item">
-   <%if message.user == current_user%>
-     <p><b>あなた</b>: <%= "#{message.content}" %></p>
+<%if message.user == current_user%>
+  <div class="talk_right">
+      <p><%= "#{message.content}" %></p>
+  </div>
+<%else%>
+  <div class="talk_left">
+   <%if message.user.image? %>
+      <%=image_tag message.user.image.thumb.url, class: "talk-img" %> <p><%= "#{message.content}" %></p>
    <%else%>
-    <p><b><%= "#{message.user.name}さん"%></b>: <%= "#{message.content}" %></p>
+      <%= image_tag 'default.jpg', class: "talk-img" %>   <p><%= "#{message.content}" %></p>
    <%end%>
-</li>
+  </div>
+<%end%>

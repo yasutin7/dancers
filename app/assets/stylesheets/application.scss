@@ -1,55 +1,624 @@
 @import "bootstrap";
 
-.top {
+/*初期設定*/
+:root {
+  --font-family-sans-serif: "游ゴシック体", "Yu Gothic", YuGothic,
+    "Helvetica Neue", Helvetica, Arial, "Hiragino Kaku Gothic ProN", Meiryo,
+    sans-serif;
+  --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
+}
+
+body {
+  font-family: "游ゴシック体", "Yu Gothic", YuGothic, "Helvetica Neue",
+    Helvetica, Arial, "Hiragino Kaku Gothic ProN", Meiryo, "Open Sans",
+    sans-serif;
+  background-color: #fbfaf7;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Helvetica Neue", Helvetica, Arial, "游ゴシック体", "Yu Gothic",
+    YuGothic, "Hiragino Kaku Gothic ProN", Meiryo, "Open Sans", sans-serif;
+}
+
+p {
+  margin-bottom: 0;
+}
+
+a {
+  color: #000000;
+}
+
+.container {
+  padding-bottom: 100px;
+}
+
+.flash-container {
+  width: 75%;
+  margin: 0 auto;
+}
+
+/* ヘッダー*/
+
+/*トップページ*/
+.top-page {
+  position: relative;
+}
+
+.top-page-title {
+  position: absolute;
+  font-family: roximaNova, sans-serif;
+  top: 20%;
+  left: 10%;
+}
+
+.top-page-title h1 {
+  font-weight: bold;
+  font-size: 5em;
+  text-shadow: 2px 2px 1px #fff;
+}
+
+.top-page-title2 {
+  position: absolute;
+  font-family: roximaNova, sans-serif;
+  top: 20%;
+  left: 10%;
+}
+
+.top-page-title2 h1 {
+  font-weight: bold;
+  font-size: 5em;
   color: white;
-  padding: 30px;
-}
- .stats1 {
-   padding-left: 20px;
-   padding-top: 20px;
 }
 
-.login {
-  padding-left: 400px;
-  padding-top:  50px;
-}
-.btn-posts{
-  padding-bottom: 10px;
-  
+.top-page-title3 {
+  position: absolute;
+  font-family: roximaNova, sans-serif;
+  top: 20%;
+  left: 10%;
 }
 
-.chat-btn{
-  color: #007bff;
-  text-decoration: none;
-  background-color: transparent;
-  border: none;
+.top-page-title3 h1 {
+  font-weight: bold;
+  font-size: 5em;
+  color: white;
+  text-shadow: 2px 2px 1px #000000;
+}
+
+.top-page-title4 {
+  position: absolute;
+  font-family: roximaNova, sans-serif;
+  top: 20%;
+  left: 10%;
+}
+
+.top-page-title4 h1 {
+  font-weight: bold;
+  font-size: 5em;
+  color: white;
+  text-shadow: 2px 2px 1px #000000;
+}
+
+/*ログインフォーム*/
+.login-form {
+  width: 30%;
+  margin: 100px auto;
+}
+
+.signup-btn {
+  margin-top: 50px;
+}
+
+/*新規登録フォーム*/
+.signup-form {
+  width: 30%;
+  margin: 50px auto;
+}
+
+/*投稿一覧画面*/
+.posts-index-title {
+  padding: 10px 0px 10px 10px;
+  width: 15%;
+  background: linear-gradient(transparent 50%, #a8eaff 50%);
+}
+
+.card {
+  width: 31%;
+  margin-top: 10px;
+  margin-left: 10px;
+  box-shadow: 2px 2px 4px;
+}
+
+.card-img-top {
+  border-radius: 50%;
+  box-shadow: 2px 2px 4px;
+  margin: 10px auto;
+  width: 180px;
+  height: 180px;
+}
+
+.card-title {
+  text-align: center;
+}
+
+.card-body {
+  background-color: #edffff;
+}
+
+.card-text {
+  color: #000000;
+  font-weight: bold;
+}
+
+.likes-count {
+  padding-left: 60px;
+}
+
+.info-tag {
+  color: white;
+  text-align: center;
+}
+
+.info-genre {
+  width: calc(100% / 3);
+  background-color: #f3868b;
+}
+
+.info-address {
+  width: calc(100% / 3);
+  background-color: #89b1dd;
+}
+
+.info-age {
+  width: calc(100% / 3);
+  background-color: #d5d338;
+}
+
+/*投稿詳細画面*/
+
+.show-post {
+  width: 60%;
+  margin: 0 auto;
+  padding: 40px 0 60px 0;
+  background-color: white;
+}
+
+.post-group {
+  width: 80%;
+  margin: auto;
+}
+
+.post-condition,
+.post-content {
+  font-weight: bold;
+}
+
+.post-user-action {
+  margin: 30px 0;
 }
 
 .like-btn {
-  width: 25px;
- height: 30px;
- font-size: 25px;
- color: #808080; 
- margin-left: 20px;
+  display: inline;
 }
 
-.unlike-btn {
-  width: 25px;
-  height: 30px;
-  font-size: 25px;
-  color: #e54747;
+.post-talk-btn {
+  margin-left: 30px;
+  border: 0px none;
+  background-color: white;
+}
+
+.new_room {
+  display: inline;
+}
+
+.fa-heart {
+  color: red;
+}
+
+.fa-edit {
+  color: #29a570;
+}
+
+.fa-trash-alt {
+  color: red;
+}
+
+/*ダンサー一覧画面*/
+.users-index-title {
+  padding: 10px 0px 10px 10px;
+  width: 20%;
+  background: linear-gradient(transparent 50%, #fecbe2 50%);
+}
+
+.genre-form,
+.address-form {
+  margin: 20px auto;
+}
+
+.users-search-btn {
+  color: white;
+  background-color: #29a570;
+  border-radius: 10%;
+  border: 0 5px;
+  margin: 0px 20px 30px 0;
+  padding: 7px;
+}
+.users-search-reset {
+  color: black;
+  background-color: #ddd;
+  border-radius: 10%;
+  box-shadow: 1px 1px 2px;
+  padding: 10px;
+}
+
+.user-genre {
+  width: 100%;
+  background-color: #f55fa2;
+  text-align: center;
+  color: white;
+  font-weight: bold;
+}
+
+.user-card-body {
+  background-color: #fdf1f6;
+}
+
+/*ダンサー詳細画面*/
+
+.mypage-top {
+  background: linear-gradient(
+    to right,
+    #00c6ff 0%,
+    #0072ff 50%
+  );
+  padding: 100px 0 200px 0;
+  color: white;
+  text-shadow: 0px 0px 1px black;
+}
+
+.profile-img {
+  border-radius: 50%;
+  border: 3px solid white;
+  display: block;
+  margin: 30px auto;
+  width: 200px;
+  height: 200px;
+}
+
+.user-info {
+  display: block;
+  text-align: center;
+  margin: auto;
+  width: 60%;
+}
+
+.follow-situation {
+  float: right;
+  padding-top: 20px;
+}
+
+.follow-situation a {
+  color: white;
+}
+
+.user-talk-btn {
+  border: 0px none;
+  color: white;
+  background-color: transparent;
+}
+
+.follow-btn {
+  display: inline;
+  border: 0px none;
+  color: white;
+  background-color:transparent;
+}
+
+.user-name {
+  font-weight: bold;
+  display: inline;
+  padding-left: 25%;
+  margin: 0 auto;
+}
+
+.user-introduce {
+  font-weight: bold;
+  padding: 20px 0px 30px 0px;
+  margin: 0 auto;
+  text-align: center;
+  border-bottom: solid;
+  border-color: rgb(196, 196, 196);
+  border-width: 2px;
+  width: 50%;
+}
+
+.user-action {
+  display: inline;
+  float: left;
+}
+
+.user-detail {
+  width: 50%;
+  margin: 20px auto;
+  text-align: center;
+}
+
+.user-age,
+.user-sex,
+.user-address,
+.user-edit {
+  font-weight: bold;
+  padding-left: 20px;
+  float: right;
+}
+
+.fa-user-edit{
+  color:  white;
+}
+
+.user-post-title {
+  margin: 20px auto;
+  width: 10%;
+  background: linear-gradient(transparent 50%, #faf6b0 50%);
+}
+
+.post-add-btn {
+  width: 50%;
+  margin: 0px auto;
+  padding: 20px 0px 20px 450px;
+}
+
+.nothing-post {
+  padding: 20px 0px;
+}
+
+.user-post-content {
+  width: 100%;
+  padding-bottom: 100px;
+  background-color: #fff;
+  text-align: center;
+}
+
+.user-post-group {
+  position: relative;
+}
+
+.user-post-bg {
+  width: 50%;
+  height: 200px;
+  border: solid 1px #ccc;
+  padding: 7px;
+  background-size: contain;
+}
+
+.user-post-text {
+  font-size: 3vh;
+  width: 40%;
+  color: white;
+  position: absolute;
+  font-family: Quicksand, sans-serif;
+  top: 30%;
+  left: 30%;
+}
+
+/*メッセージ一覧画面*/
+.message-index-title {
+  margin: 20px auto;
+  width: 10%;
+  background: linear-gradient(transparent 50%, #faf6b0 50%);
+}
+
+.media {
+  color: black;
+  width: 50%;
+  margin: 0 auto;
+  padding: 20px 0;
+  background-color: white;
+  border-top: solid 2px #5d627b;
+  box-shadow: 0 3px 4px rgba(0, 0, 0, 0.32);
+}
+
+.message-img-top {
+  border-radius: 50%;
+  box-shadow: 2px 2px 4px;
+  margin: auto 20px;
+  width: 70px;
+  height: 70px;
+}
+
+.nothing-message {
+  width: 50%;
+  height: 300px;
+  margin: 30px auto;
+  text-align: center;
+}
+.media-body {
   margin-left: 20px;
 }
 
-.dance-background {
-  background: image-url('dance-background.jpg');
-  height: 1000px;
-  background-size: cover;
+.reply-message {
+  color: #8b8a8a;
 }
 
-.dance-background2 {
-  background: image-url('dance-background2.jpg');
-  height: 2000px;
-  background-size: cover;
+/*トーク画面*/
+.talk-title {
+  margin: 20px auto;
+  width: 10%;
+  background: linear-gradient(transparent 50%, #e2f7b9 50%);
+}
+.talk {
+  background-color: white;
+  width: 60%;
+  margin: auto;
+  padding: 1em;
+  overflow: auto;
 }
 
+.talk_left {
+  margin-top: 10px;
+  margin-right: 400px;
+}
+
+.talk-img {
+  border-radius: 50%;
+  box-shadow: 2px 2px 4px;
+  width: 50px;
+  height: 50px;
+}
+
+.talk .talk_left p:before {
+  content: "";
+  position: absolute;
+  top: 8px;
+  left: -20px;
+  border: 12px solid transparent;
+  border-right: 12px solid rgb(238, 236, 236);
+}
+.talk .talk_left p {
+  position: relative;
+  background-color: rgb(238, 236, 236);
+  border-radius: 10px;
+  padding: 10px;
+  margin: 0 0 0 10px;
+}
+
+.talk_right {
+  color: white;
+  margin-top: 10px;
+  margin-left: 400px;
+  display: block;
+}
+
+.talk .talk_right p:after {
+  content: "";
+  position: absolute;
+  top: 8px;
+  right: -20px;
+  border: 12px solid transparent;
+  border-left: 12px solid #1ea3f0;
+}
+.talk .talk_right p {
+  position: relative;
+  background-color: #26a0e7;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 0 10px 0 0;
+}
+
+.form {
+  margin-left: 430px;
+}
+
+/*フォロワー一覧ページ*/
+.follow-page {
+  width: 50%;
+  margin: 0 auto;
+}
+
+.follow-users {
+  width: 100%;
+}
+
+/*いいねしたユーザー一覧ページ*/
+.liked-users-title {
+  margin: 20px;
+}
+
+.liked-page {
+  width: 50%;
+  margin: auto;
+}
+
+.nothing-liked {
+  padding-top: 20px;
+  height: 300px;
+}
+
+.liked-users {
+  width: 100%;
+}
+
+/*フッター*/
+#footer {
+  padding: 60px 0;
+  text-align: center;
+  color: #212529;
+  text-transform: uppercase;
+  background: #212529 !important;
+}
+
+#footer h5 {
+  padding-left: 10px;
+  border-left: 3px solid #eeeeee;
+  padding-bottom: 6px;
+  margin-bottom: 20px;
+  color: #ffffff;
+}
+
+#footer a {
+  color: #ffffff;
+  text-decoration: none !important;
+  background-color: transparent;
+  -webkit-text-decoration-skip: objects;
+}
+
+#footer ul.social li {
+  padding: 3px 0;
+}
+
+#footer ul.social li a i {
+  margin-right: 5px;
+  font-size: 25px;
+  -webkit-transition: 0.5s all ease;
+  -moz-transition: 0.5s all ease;
+  transition: 0.5s all ease;
+}
+
+#footer ul.social li:hover a i {
+  font-size: 30px;
+  margin-top: -10px;
+}
+
+#footer ul.social li a,
+#footer ul.quick-links li a {
+  color: #ffffff;
+}
+
+#footer ul.social li a:hover {
+  color: #eeeeee;
+}
+
+#footer ul.quick-links li {
+  padding: 3px 0;
+  -webkit-transition: 0.5s all ease;
+  -moz-transition: 0.5s all ease;
+  transition: 0.5s all ease;
+}
+
+#footer ul.quick-links li:hover {
+  padding: 3px 0;
+  margin-left: 5px;
+  font-weight: 700;
+}
+
+#footer ul.quick-links li a i {
+  margin-right: 5px;
+}
+
+#footer ul.quick-links li:hover a i {
+  font-weight: 700;
+}
+
+@media (max-width: 767px) {
+  #footer h5 {
+    padding-left: 0;
+    border-left: transparent;
+    padding-bottom: 0px;
+    margin-bottom: 10px;
+  }
+}

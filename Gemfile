@@ -57,7 +57,12 @@ group :test do
 end
 
 group :development, :test do
-  gem 'sqlite3' 
+  gem 'sqlite3'
+  gem 'capybara', '>= 2.15'
+  gem 'rspec-rails'
+  gem "factory_bot_rails"
+  gem 'faker'
+  gem 'rubocop-airbnb'
 end
 
 group :production do
@@ -71,9 +76,5 @@ gem 'carrierwave', '>= 2.0.0.rc', '< 3.0'
 gem 'mini_magick'
 gem 'ransack'
 gem 'faker'
-gem "jquery-rails"
+gem 'jquery-rails'
 gem 'pry-rails'
-gem 'pry-byebug'
-
-
-

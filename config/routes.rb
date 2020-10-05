@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
   delete '/logout' => 'sessions#destroy'
@@ -9,19 +8,18 @@ Rails.application.routes.draw do
   root to: 'posts#index'
   resources :posts
   get '/top' => 'home#top'
-  get '/about' => 'home#about'
+
   resources :relationships, only: [:create, :destroy]
-  resources :rooms, only: [:show, :create, :index ]
+  resources :rooms, only: [:show, :create, :index]
   mount ActionCable.server => '/cable'
 
   resources :users do
-    member do 
+    member do
       get :following, :followers
     end
   end
 
   resources :posts do
-    resources :likes, only: [:create, :destroy,:index]
+    resources :likes, only: [:create, :destroy, :index]
   end
-
 end
