@@ -1,26 +1,42 @@
-<div class="jumbotron" >
-  <div class="container",text-align:center;>
-   
-  <div class="post">
-       
-        <p class="display-4"><%= link_to @post.user.name, user_path(@post.user)%></p>
-
-       <strong><h1 class="display-7 "><%= @post.condition %></h1>
-       <p>をするかわりに</p>
-       <h1 class="display-7"><%= @post.content %></h1><strong>
-      
-       
-        <p class="lead"><%= @post.user.email %></p>
-         <p class="lead"><%= @post.created_at %></p>
-       <div id="likes_buttons_<%= @post.id %>">
-             <%= render partial: 'likes/like', locals: { post: @post} %>
-       </div>
-      
+<div class="container">
+  <div class="show-post shadow">
+    <div class="post-group">
+      <h1 class="post-user-name"><%= link_to @post.user.name, user_path(@post.user)%></h1>
+      <h1 class="post-condition"><span style="background: linear-gradient(transparent 60%, #f3b0f3 60%)"><%= @post.condition %></span></h1>
+      <p>をするかわりに</p>
+      <h1 class="post-content"><span style="background: linear-gradient(transparent 60%, #f3b0f3 60%)"><%= @post.content %><span></h1>
+    
+    <p class="lead"><%= simple_time(@post.created_at) %></p>
+    
+    <div class="post-user-action">
       <% if @post.user_id == @current_user.id %>
-      <%= link_to "編集する", edit_post_path %>
-      <%=link_to "削除する", post_path(@post), method: :delete, data:{confirm: '削除しますか？'}%>
+        <%= link_to edit_post_path do%>
+          <i class="fas fa-edit fa-2x "></i>
+        <%end%>
+  
+        <%=link_to post_path(@post), method: :delete, data:{confirm: '削除しますか？'} do%>
+          <i class="fas fa-trash-alt fa-2x "></i>
+        <%end%>
+      <%else%>
+          <div  id="likes_buttons_<%= @post.id %>" class="like-btn">
+            <%= render partial: 'likes/like', locals: { post: @post} %>
+          </div>
+          <% if @isRoom == true %>
+            <%= link_to room_path(@roomId), class: "post-talk-btn" do %>
+            <i class="fas fa-comment-dots fa-2x "></i>
+            <%end%>
+          <% else %>
+              <%= form_for @room do |f| %>
+                <%= fields_for @entry do |e| %>
+                  <%= e.hidden_field :user_id, :value => @user.id %>
+                  <%=button_tag type: 'submit', class: "post-talk-btn"  do %>
+                      <i class="fas fa-comment-dots fa-2x "></i>
+                  <%end%>
+                <% end %>
+              <% end %>
+          <%end%>
       <%end%>
-     
     </div>
+   </div>
   </div>
 </div>

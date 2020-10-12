@@ -1,30 +1,23 @@
 <div class="container">
-<br>
-<div class="row">
-    <div class="col-md-12">
-        <table class = "table table-hover">
-            <thead class="thead-light">
-               
-                <tr>
-                    <th colspan = "3">いいねしたユーザー</th>
-                    
-                </tr>
-            </thead>
-            <tbody>
-               
-                 <% @post.liked_users.each do |user|%>        
-                <tr>                
-                     <th width = "100"><%=image_tag user.image.thumb100.url if user.image? %></th>
-                     <th width = "100"> <%= link_to user.name, user_path(user) %>
-                      <th width = "900"> ジャンル：<%=user.genre %><br><%= user.introduce %></th>
-
-                 </tr>
-                  <% end %>
-
-                
-            </tbody>
-        </table>
+  <div class="liked-page">
+     <i class="fas fa-user fa-1x liked-users-title"> いいねしたユーザー</i>
+    <%if @post.likes.count == 0%>
+     <div class="nothing-liked">
+       <p>いいねしたユーザーはまだいません</p>
+     </div>
+    <%end%>
+    <% @post.liked_users.each do |user|%>
+    <div class="media liked-users">
+        <div class="d-flex mr-3">
+            <%if user.image? %>
+                <%=image_tag user.image.thumb.url, class: "message-img-top"%>
+            <%else%>
+                <%=image_tag 'default.jpg', class: "message-img-top"%>
+            <%end%>
+        </div>
+        <h3><%= link_to user.name, user_path(user) %></h3>
     </div>
-</div>
+    <%end%>
+  </div>
 </div>
 

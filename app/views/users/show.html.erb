@@ -1,109 +1,115 @@
-<div class="jumbotron">
-<div class="container">
-<h1 class="display-3"><%= @user.name %> </h1>
-<h2 > ▶︎ <%= @user.genre%></h2>
-<%= image_tag @user.image.thumb.url if @user.image?  %> 
-
-<h2><%= @user.email %></h2>
-
-<% if @user.id == current_user.id %>
-
-<% else %>
-  <% if @isRoom == true %>
-    <%= link_to "メッセージ", room_path(@roomId), class: "far fa-envelope" %>
-    
-  <% else %>
-        <%= form_for @room do |f| %>
-            <%= fields_for @entry do |e| %>
-              <%= e.hidden_field :user_id, :value => @user.id %>
-            <% end %>
-            
-            <%= f.submit "メッセージ" , class: "chat-btn " %>
-          <% end %>
+<div class="container ">
+ <div class="mypage-top shadow">
+  <%if @user.image?%>
+   <%= image_tag @user.image.thumb.url,class: "profile-img" %> 
+  <%else%>
+   <%= image_tag 'default.jpg', class: "profile-img" %>
   <%end%>
-<% end %>
-<div>
-<section class="stats" >
-  <%= render 'shared/stats' %>
-</section>
-<%= render 'follow_form' %>
+  <div class="user-info">
+      <h1 class="user-name"> <%= @user.name %> </h1>
+      <div class="follow-situation">
+        <section class="stats" >
+          <%= render 'shared/stats' %>
+        </section>
+      </div>
+  </div>
 
-</div>
-</br>
-<h2 class="display-5"><b><%= @user.introduce%></b></h2>
+  <% if @user.introduce == nil || @user.introduce == "" %>
+  <%else%>
+    <div class="user-introduce">
+        <i class="fas fa-quote-left"></i> <%= @user.introduce%>
+        <i class="fas fa-quote-right"></i>
+    </div>
+  <%end%>
+   
+   <div class="user-detail">
+      <div class="user-action">
+      <% if @user.id != current_user.id %>
+        <div class="m-1 d-inline-block">
+            <% if @isRoom == true %>
+              <%= link_to room_path(@roomId), class: "user-talk-btn" do %>
+               <i class="fas fa-comment-dots fa-2x "></i>
+              <%end%>
+            <% else %>
+                <%= form_for @room do |f| %>
+                  <%= fields_for @entry do |e| %>
+                    <%= e.hidden_field :user_id, :value => @user.id %>
+                    <%=button_tag type: 'submit', class: "user-talk-btn"  do %>
+                        <i class="fas fa-comment-dots fa-2x "></i>
+                    <%end%>
+                  <% end %>
+                <% end %>
+            <%end%>
+          </div>
+          <div class="m-1 d-inline-block">
+            <%= render 'follow_form' %>
+          </div>
+     <% end %>
+     </div>
+      <div class="user-edit">
+        <% if @current_user.id == params[:id].to_i %>
+          <%= link_to edit_user_path do%>
+            <i class="fas fa-user-edit fa-2x"></i>
+          <%end%>
+        <%end%>
+      </div>
 
-<hr class="my-2"> 
-<% if @user.address == nil || @user.address == "" %>
-<%else%>
-  <%= @user.address  %>　
-<%end%>
-<% if @user.age %>
- <%= @user.age%>才　
-<%end%>
- <%=  @user.sex%>　
-<% if @current_user.id == params[:id].to_i %>
-<%= link_to '編集する', edit_user_path %></p>
-<%end%>
-<br>
-</div>
-</div>
+      <div class="user-age">
+          <% if @user.age %>
+            <%= @user.age%>才
+          <%end%>
+      </div>
 
-<div class="container">
-<div class="row">
-    <div class="col-md-12">
-    <%if @user.posts == []%>
-    <table class = "table table-hover">
-     <thead class="thead-light">
-      <tr>
-        <th >投稿はまだありません</th>
-      </tr>
-    </thead>
-    </table>
-    <%else%>
-      <% if @current_user.id == params[:id].to_i %>
-        <table class = "table table-hover">
-            <thead class="thead-light">
-                <tr>
-                    <th >投稿一覧</th>
-                    <th >メニュー</th>
-                </tr>
-            </thead>
-            <tbody>
-                <% @user.posts.each do |post|%>
-                 <tr>
-                     <td><a href="/posts/<%=post.id%>"><%=post.condition%>をするかわりに<%=post.content%></a></td>
-                     <td> 
-                          <%=link_to "削除する", post_path(post), method: :delete, data:{confirm: '削除しますか？'}%>
-                     </td>
-                 </tr>
-                 <%end%>
-            </tbody>
-        </table>
-        <% elsif @current_user.id != params[:id].to_i %>
-        <table class = "table table-hover">
-            <thead class="thead-light">
-                <tr>
-                    <th>投稿一覧</th>
-                </tr>
-            </thead>
-            <tbody>
-                <% @user.posts.each do |post|%>
-                 <tr>
-                    
-                     <td><a href="/posts/<%=post.id%>"><%=post.condition%>をするかわりに<%=post.content%></a></td>
-                 </tr>
-                 <%end%>
-            </tbody>
-        </table>
-      <% end %>
+      <div class="user-sex">
+        <%=  @user.sex%>
+      </div>
 
-   <%end%>
-
- 
-
+      <% if @user.address == nil || @user.address == "" %>
+      <%else%>
+        <div class="user-address">
+           <i class="fas fa-map-marker-alt"> <%= @user.address  %></i>
+        </div>
+      <%end%>
 
     </div>
+ </div>
 
+ <div class="user-post-index shadow">
+   <div class="user-post-title">
+      <i class="fas fa-check fa-1x">投稿一覧</i>
+   </div>
+   
+  <div class="user-post-content">
+    <%if current_user.id == params[:id].to_i%>
+      <div class="post-add-btn">
+        <%=link_to new_post_path do%>
+          <i class="fas fa-plus-circle fa-1x"> 追加する</i>
+        <%end%>
+      </div>
+    <%end%>
+    <%if @user.posts.empty?%>
+    <p class="nothing-post">
+       投稿はまだありません
+    </p>
+    <%else%>
+        <% @user.posts.each do |post|%>
+           <div class="user-post-group">
+               <%=link_to image_tag("post-bg.jpg", class:"user-post-bg") , post_path(post)%> 
+               <a href="/posts/<%=post.id%>" class="user-post-text">
+                  <%=post.condition%>をするかわりに<br>
+                  <strong><%=post.content%></strong>
+                    <% if @current_user.id == params[:id].to_i %>
+                      <%=link_to post_path(post), method: :post, class: "post-content" do %>
+                      <%end%>
+                      <%=link_to  post_path(post), method: :delete, data:{confirm: '削除しますか？'}, class: "post-content" do%>
+                      <%end%>
+                    <%end%>
+               </a>
+           </div>
+        <%end%>
+    <%end%>
+  </div>
+</div>
 </div>
 
 

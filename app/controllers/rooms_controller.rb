@@ -1,8 +1,8 @@
 class RoomsController < ApplicationController
-   def index
-     @rooms = Room.all
-     @entries = Entry.all
-  end
+  def index
+    @rooms = Room.all
+    @entries = Entry.all
+ end
 
   def create
     @room = Room.create

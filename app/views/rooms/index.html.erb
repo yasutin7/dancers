@@ -1,51 +1,47 @@
 <div class="container">
-
-    <div class="row">
-    <div class="col-md-12">
-        <table class = "table table-hover">
-        <% entries = @entries.where(user_id: current_user.id)%>
-        <%if entries.empty?%>
-          <thead class="thead-light">
-              <tr> 
-                <th>トーク相手はまだいません</th>
-              </tr>
-          </thead>
-        <%else%>
-          <thead class="thead-light">
-              <tr> 
-                <th>トーク相手一覧</th>
-              </tr>
-          </thead>
-          <tbody>
-            
-          <%@entries.each do |e|%> 
-              <%if current_user.id == e.user_id  %>
-                <% entries = @entries.where(room_id: e.room.id)%>
-                 <%entries.each do |en|%>
-                  <%if en.user_id == current_user.id%>
-                    <%else%>
-                        <tr>
-                            <th>
-                              <h1><%= link_to en.user.name, room_path(e.room_id)%></h1>
-                              <% en.room.messages.each_with_index  do |m, index|%>
-                              <%if index == en.room.messages.size-1 %>
-                              <%if m.user.id == current_user.id%>
-                              <h5>メッセージ： <%= m.content%>  by あなた</p> </h5>
-                              <%else%>
-                              <h5>メッセージ： <%= m.content%>  by <%= m.user.name %>さん</p> </h5>
-                              <%end%>
-                          </th>
-                        </tr>
+  <div class="message-index-title">
+      <i class="fas fa-comment-dots fa-1x">メッセージ</i>
+  </div>
+  <% entries = @entries.where(user_id: current_user.id)%>
+  <%if entries.empty?%>
+       <div class="nothing-message">
+          <p>トーク相手はまだいません</p>
+       </div>
+  <%else%>
+    <%@entries.each do |e|%> 
+        <%if current_user.id == e.user_id  %>
+          <% entries = @entries.where(room_id: e.room.id)%>
+            <%entries.each do |en|%>
+            <%if en.user_id == current_user.id%>
+            <%else%>
+                  <%= link_to room_path(e.room_id), {class: "message-link"} do%>
+                    <div class="media message-link">
+                      <div class="d-flex mr-3" >
+                        <%if en.user.image? %>
+                          <%=image_tag en.user.image.thumb.url, class: "message-img-top" %>
+                        <%else%>
+                          <%= image_tag 'default.jpg', class: "message-img-top" %>
                         <%end%>
-                        <%end%>
-                      <%end%>
-                    <%end%>
+                      </div>
+                      <div class="media-body">
+                        <h5 class="mt-0"><%=en.user.name%></h5>
+                          <% en.room.messages.each_with_index  do |m, index|%>
+                            <%if index == en.room.messages.size-1 %>
+                            <%if m.user.id == current_user.id%>
+                              <p class="reply-message"> <i class="fas fa-reply"></i> <%= m.content%> </p>
+                            <%else%>
+                              <p class="reply-message"><%= m.content%> </p> 
+                            <%end%>
+                            <%end%>
+                          <%end%>
+                      </div>
+                    </div>
                   <%end%>
                 <%end%>
-             <%end%>
-     </table>
-    </div>
-  </div> 
-</div>
+              <%end%>
+            <%end%>
+          <%end%>
+        <%end%>
+  </div>
 
   
