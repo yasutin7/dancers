@@ -15,7 +15,7 @@
 # gem 'pg'
 #
 default: &default
-  adapter: postgresql
+  adapter: mysql2
   encoding: unicode
   # For details on connection pooling, see Rails configuration guide
   # http://guides.rubyonrails.org/configuring.html#database-pooling
@@ -23,7 +23,13 @@ default: &default
 
 development:
   <<: *default
+  adapter: mysql2
+  encoding: utf8
+  pool: 5
   database: dancers_development
+  username: root
+  password:
+  socket: /tmp/mysql.sock
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
@@ -57,6 +63,9 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
+  adapter: mysql2
+  encoding: utf8
+  pool: 5
   database: dancers_test
 
 # As with config/secrets.yml, you never want to store sensitive information,
